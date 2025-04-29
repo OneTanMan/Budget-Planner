@@ -171,16 +171,17 @@ public class Main {
                         int sortOption = scanner.nextInt();
 
                         switch (sortOption) {
-                            case 1://sort all purchases
+                            case 1: // sort all purchases
                                 System.out.println();
                                 if (isNull(PurchaseType.allList.isEmpty())) break;
                                 SortedMap<String, Double> map = new TreeMap<>(PurchaseType.getAllList());
-                                //System.out.println();
                                 System.out.println("All:");
                                 sort(map);
-                                System.out.printf("Total: $%.2f\n", PurchaseType.allProductsTotal);
-                                System.out.println();
-
+                                double totalPurchases = PurchaseType.allProductsTotal;
+                                double remainingBalance = balance - totalPurchases;
+                                System.out.printf("Total sum of purchases: $%.2f\n", totalPurchases);
+                                System.out.printf("Income: $%.2f\n", balance);
+                                System.out.printf("Balance after purchases: $%.2f\n\n", remainingBalance);
                                 break;
                             case 2:
                                 // TODO: 15/09/2020 sort by type
@@ -209,7 +210,9 @@ public class Main {
                                 sorted_map.putAll(categoryMap);
                                 sorted_map.forEach((key, value) -> System.out.printf("%s - $%.2f\n", key, value));
 
-                                System.out.printf("Total sum: $%.2f\n\n", PurchaseType.allProductsTotal);
+                                System.out.printf("Total sum: $%.2f\n", PurchaseType.allProductsTotal);
+                                System.out.printf("Income: $%.2f\n", balance);
+                                System.out.printf("Balance after purchases: $%.2f\n\n", (balance - PurchaseType.allProductsTotal));
                                 break;
                             case 3:
                                 // TODO: 15/09/2020 sort certain type
